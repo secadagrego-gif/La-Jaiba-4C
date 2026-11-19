@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Jaiba 4C — Bienvenida</title>
+<meta name="description" content="Guía de bienvenida, wifi e inventario del apartamento La Jaiba 4C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Caveat:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sea-deep:#0d2b2e;
+    --sea-mid:#123a3c;
+    --sea-line:#2c5c58;
+    --sand:#f2e9d8;
+    --sand-dim:#cdbfa2;
+    --coral:#ee7a5f;
+    --coral-dim:#c25f49;
+    --paper:#faf5ea;
+    --ink:#1c2523;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--sea-deep);
+    color:var(--sand);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .fade-in{animation:fadeIn .9s ease both;}
+    .fade-in.d1{animation-delay:.12s;}
+    .fade-in.d2{animation-delay:.24s;}
+  }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+  a{color:inherit;}
+
+  .wrap{max-width:640px;margin:0 auto;padding:0 22px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:64px 0 46px;
+    background:
+      radial-gradient(120% 90% at 15% -10%, rgba(238,122,95,0.16), transparent 60%),
+      radial-gradient(90% 70% at 100% 0%, rgba(44,92,88,0.4), transparent 55%),
+      var(--sea-deep);
+    overflow:hidden;
+    border-bottom:1px solid var(--sea-line);
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:auto 0 0 0;
+    height:60px;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 14px, rgba(242,233,216,0.05) 14px 15px);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--coral);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:1px;background:var(--coral);
+    display:inline-block;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 9vw, 54px);
+    line-height:1.02;
+    margin:18px 0 6px;
+    color:var(--paper);
+    letter-spacing:-.01em;
+  }
+  .title em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--coral);
+  }
+  .subtitle{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--sand-dim);
+    letter-spacing:.03em;
+  }
+  .welcome-note{
+    margin-top:34px;
+    padding:26px 24px 22px;
+    background:rgba(250,245,234,0.04);
+    border:1px solid var(--sea-line);
+    border-radius:2px;
+    position:relative;
+  }
+  .welcome-note::before{
+    content:"🌿";
+    position:absolute;
+    top:-16px; left:20px;
+    font-size:22px;
+    background:var(--sea-deep);
+    padding:0 8px;
+  }
+  .welcome-note p{
+    font-family:'Caveat', cursive;
+    font-size:26px;
+    line-height:1.35;
+    color:var(--paper);
+    margin:0 0 10px;
+  }
+  .welcome-note p:last-child{margin-bottom:0;}
+  .welcome-sign{
+    margin-top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--sand-dim);
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:44px 0;}
+  section + section{border-top:1px solid var(--sea-line);}
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:22px;
+  }
+  .sec-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--coral);
+    letter-spacing:.06em;
+  }
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:24px;
+    margin:0;
+    color:var(--paper);
+    letter-spacing:-.01em;
+  }
+
+  /* ---------- WIFI (boarding-pass style) ---------- */
+  .pass{
+    display:flex;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:3px;
+    overflow:hidden;
+    box-shadow:0 18px 40px -18px rgba(0,0,0,.55);
+  }
+  .pass-main{
+    flex:1;
+    padding:22px 20px;
+    min-width:0;
+  }
+  .pass-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--coral-dim);
+  }
+  .pass-net{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:21px;
+    margin:4px 0 14px;
+    word-break:break-word;
+  }
+  .pass-row{
+    display:flex;
+    justify-content:space-between;
+    padding:7px 0;
+    border-top:1px dashed #d8cba9;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+  }
+  .pass-row span:first-child{color:#8a7a55;}
+  .pass-stub{
+    width:132px;
+    flex-shrink:0;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px;
+    position:relative;
+    border-left:2px dashed #d8cba9;
+  }
+  .pass-stub::before,.pass-stub::after{
+    content:"";
+    position:absolute;
+    width:18px;height:18px;
+    background:var(--sea-deep);
+    border-radius:50%;
+    left:-10px;
+  }
+  .pass-stub::before{top:-9px;}
+  .pass-stub::after{bottom:-9px;}
+  .pass-stub img{width:100%;height:auto;display:block;}
+  .wifi-hint{
+    margin-top:12px;
+    font-size:13px;
+    color:var(--sand-dim);
+  }
+
+  /* ---------- INFO CARDS ---------- */
+  .info-grid{display:flex;flex-direction:column;gap:14px;}
+  .info-card{
+    padding:18px 20px;
+    background:rgba(250,245,234,0.03);
+    border:1px solid var(--sea-line);
+    border-left:3px solid var(--coral);
+  }
+  .info-card h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--coral);
+    margin:0 0 8px;
+    font-weight:500;
+  }
+  .info-card p{margin:0;color:var(--sand);font-size:15px;}
+  .times{display:flex;gap:14px;}
+  .time-block{flex:1;}
+  .time-num{
+    font-family:'Fraunces', serif;
+    font-size:28px;
+    color:var(--paper);
+    font-weight:600;
+  }
+  .time-tag{font-size:12px;color:var(--sand-dim);}
+  .flex-note{font-size:13px;color:var(--sand-dim);margin-top:10px;}
+
+  .water-card{
+    border-left-color:#5fb8b0;
+  }
+  .water-card h3{color:#5fb8b0;}
+
+  .sos-card{border-left-color:#e05a5a;background:rgba(224,90,90,0.07);}
+  .sos-card h3{color:#f08a8a;}
+  .sos-name{font-family:'Fraunces', serif;font-size:20px;color:var(--paper);font-weight:600;margin-bottom:2px;}
+  .sos-num{font-family:'IBM Plex Mono', monospace;font-size:17px;color:var(--sand);letter-spacing:.02em;}
+  .sos-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+  .sos-btn{flex:1;min-width:120px;text-align:center;padding:10px 12px;border:1px solid #e05a5a;color:var(--paper);text-decoration:none;font-size:14px;font-weight:600;border-radius:2px;}
+  .sos-btn.call{background:#e05a5a;}
+
+  /* ---------- HOUSE RULES ---------- */
+  .key-rule{
+    margin:0 0 18px;padding:14px 16px;
+    border:1px solid var(--coral);background:rgba(238,122,95,0.09);
+    color:var(--paper);font-size:15px;
+  }
+  .key-rule-label{display:block;font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);margin-bottom:6px;}
+  .rules{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
+  .rules li{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    font-size:14.5px;
+    color:var(--sand);
+  }
+  .rules li::before{
+    content:"—";
+    color:var(--coral);
+    flex-shrink:0;
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  /* ---------- INVENTORY ---------- */
+  details.cat{
+    border-bottom:1px solid var(--sea-line);
+  }
+  details.cat summary{
+    list-style:none;
+    cursor:pointer;
+    padding:16px 2px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    letter-spacing:.02em;
+    color:var(--paper);
+  }
+  details.cat summary::-webkit-details-marker{display:none;}
+  .cat-count{
+    font-size:11px;
+    color:var(--sand-dim);
+    font-weight:400;
+  }
+  summary .chev{
+    transition:transform .25s ease;
+    color:var(--coral);
+    font-size:13px;
+  }
+  details[open] summary .chev{transform:rotate(90deg);}
+  .cat-items{
+    padding:0 2px 16px;
+    display:grid;
+    gap:8px;
+  }
+  .cat-item{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    font-size:14px;
+    padding:6px 0;
+    border-top:1px dashed rgba(205,191,162,0.25);
+  }
+  .cat-item .name{color:var(--sand);}
+  .cat-item .qty{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--coral);
+    flex-shrink:0;
+    font-size:12.5px;
+  }
+  .cat-item .obs{
+    display:block;
+    font-size:12px;
+    color:var(--sand-dim);
+    margin-top:2px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:36px 0 50px;
+    text-align:center;
+  }
+  .stamp{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:96px;height:96px;
+    border:1.5px dashed var(--sand-dim);
+    border-radius:50%;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:13px;
+    color:var(--sand-dim);
+    text-align:center;
+    line-height:1.3;
+    transform:rotate(-6deg);
+    margin-bottom:16px;
+  }
+  footer p{font-size:12.5px;color:var(--sand-dim);margin:4px 0;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow fade-in">Guía de bienvenida</div>
+    <h1 class="title fade-in d1">La Jaiba <em>4C</em></h1>
+    <div class="subtitle fade-in d1">Todo lo que necesitas durante tu estadía</div>
+
+    <div class="welcome-note fade-in d2">
+      <p>¡Bienvenidos a nuestro hogar! Esperamos que este espacio les brinde la paz, comodidad y el descanso que buscan. Siéntanse libres de ponerse cómodos y disfrutar de cada espacio.</p>
+      <p>Como cada detalle de esta casa está pensado con mucho cariño, les pedimos nos ayuden a cuidarla con el mismo afecto durante sus días aquí.</p>
+      <p>¡Que disfruten muchísimo su estadía y quedamos a su entera disposición!</p>
+      <div class="welcome-sign">— Gregorio y Valeria</div>
+    </div>
+  </div>
+</div>
+
+<section id="wifi">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>Conexión wifi</h2>
+    </div>
+    <div class="pass">
+      <div class="pass-main">
+        <div class="pass-label">Red</div>
+        <div class="pass-net">HUAWEI-Z99c_EXT</div>
+        <div class="pass-row"><span>Contraseña</span><span>FTUdRGfH</span></div>
+        <div class="pass-row"><span>Seguridad</span><span>WPA/WPA2</span></div>
+      </div>
+      <div class="pass-stub">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKAQAAAABTUiuoAAACXUlEQVR4nO2bQWrkMBBFX0WGWdqQA/RR7BvMkXKmuYF1lBxgwF4GZP4sSkocBkL3otOClFZq+S0+iKr6JalNXDny07UkBBpooE+wWx3Lbuar2czIE7RPQydaAyVJkjwlmk2HMavAvAGzJGm7r4BAb0Jr9IySVv/5S2YTeOQtdxcQ6O3oPmCLTw/Tug/fLSDQG9CxoJUkT4IPEBDo18PDp9n4Yzgb+nEDRgH7/QQEeuNuHdUJsj/L5tehAKn4LPu3dDcBgd6AotPYAE6ZMJ0/rg/XGuiTewubDjO7SMx6M963zBYOI0e/1QfaMuE+oLyYVzCxHyavVvuzzCvYw7UG6t0xsyR72ZLIU5ItJNkyFjhVtS60/mzUY0vZUmnBZAgK+Bql+cSHaw20xhZjwRYOg7FAtgGtbWbLnQUEeu345AmT6tqG98nhCbtCfbc+Di+0jh/7lvzYsM4erjXQdhToRxYTNm9gkBAcpllH1K1uUM5JcKzXJqdQ0wbMW8RWT2i+FLRSM6FbDQBb2i1KP1p/MMo5rEZJUqlb5hH1bjUith6PDn5P4l3WPhSb/zyrNV1vJsYNg1Q60BooHkzakgeTb967l8e7sfCE/aBtj1YO8xqVp5oiq8tQ6UXrz0Zp9yS0ZzNbjTcPNS9eY9StLtABL0rQyhOCvCTBDu3scIi61Q/a3jwVbNkH7GU7zBYO8wdr9xcQ6HXj45Tp/HamNV1+tBvdcadobbVezaSt3nR9q4BAvxif3jyNwsBQvgjy77+DN2L5Ep6wC/R/T3h6T0PNhIQn7AO1+EdQoIHeBf0HHgeSJZ8ZR5sAAAAASUVORK5CYII=" alt="Código QR para conectarse al wifi">
+      </div>
+    </div>
+    <div class="wifi-hint">Escanea el código con la cámara de tu teléfono para conectarte automáticamente.</div>
+  </div>
+</section>
+
+<section id="practico">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Información práctica</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card sos-card">
+        <h3>📞 Contacto de emergencia</h3>
+        <div class="sos-name">Gregorio</div>
+        <div class="sos-num">+58 416 633 2958</div>
+        <div class="sos-actions">
+          <a class="sos-btn call" href="tel:+584166332958">Llamar</a>
+          <a class="sos-btn" href="https://wa.me/584166332958">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>Horarios</h3>
+        <div class="times">
+          <div class="time-block">
+            <div class="time-num">3:00 PM</div>
+            <div class="time-tag">Check-in</div>
+          </div>
+          <div class="time-block">
+            <div class="time-num">11:00 AM</div>
+            <div class="time-tag">Check-out</div>
+          </div>
+        </div>
+        <div class="flex-note">¿Necesitas entrar antes o salir más tarde? Solo pregúntanos, con gusto lo revisamos.</div>
+      </div>
+
+      <div class="info-card water-card">
+        <h3>💧 Tanque de agua</h3>
+        <p>El apartamento cuenta con tanque de agua. Si en algún momento no tienes agua, dirígete al lavandero y enchufa el <strong>cable negro</strong> que se encuentra allí — eso activa el uso del tanque.</p>
+        <p style="margin-top:8px;">Antes de irte, recuerda <strong>desconectarlo</strong> para permitir que el tanque se vuelva a llenar con normalidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="normas">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Normas de la casa</h2>
+    </div>
+    <div class="key-rule">
+      <span class="key-rule-label">⚡ Norma clave</span>
+      Al salir de la habitación, <strong>apaga siempre el aire acondicionado y el televisor</strong>.
+    </div>
+    <ul class="rules">
+      <li>No se permiten fiestas ni eventos.</li>
+      <li>No fumar dentro del apartamento.</li>
+      <li>Respetar el horario de silencio: 10:00 PM – 8:00 AM.</li>
+      <li>No exceder el número de huéspedes acordado en la reserva.</li>
+      <li>Cuidar el apartamento y sus pertenencias como si fuera tu propia casa.</li>
+      <li>Reportar cualquier daño o inconveniente al anfitrión lo antes posible.</li>
+      <li>Depositar la basura en los lugares indicados.</li>
+      <li>Al salir, cerrar puertas y ventanas, y apagar luces, televisor y aire acondicionado.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="inventario">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Inventario del apartamento</h2>
+    </div>
+
+    <details class="cat">
+      <summary>Cubiertos y utensilios de mesa <span class="cat-count">5 tipos</span><span class="chev">▸</span></summary>
+      <div class="cat-items">
+        <div class="cat-item"><span class="name">Cuchillos</span><span class="qty">6</span></div>
+        <div class="cat-item"><span class="name">Tenedores</span><span class="qty">6</span></div>
+        <div class="cat-item"><span class="name">Cucharas soperas</span><span class="qty">6</span></div>
+        <div class="cat-item"><span class="name">Tenedores de postre</span><span class="qty">6</span></div>
+        <div class="cat-item"><span class="name">Cucharitas</span><span class="qty">6</span></div>
+      </div>
+    </details>
+
+    <details class="cat">
+      <summary>Utensilios y herramientas de cocina <span class="cat-count">18 tipos</span><span class="chev">▸</span></summary>
+      <div class="cat-items">
+        <div class="cat-item"><span class="name">Machacador de ajo</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Pelapapas</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Abrelatas</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Tijeras de cocina</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Destapador de botellas</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Pica tortas</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Paleta para tortas<span class="obs">Color azul</span></span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Pinza<span class="obs">Color verde</span></span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Pisapuré</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Cucharón de pasta</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Cucharón de sopa</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Cucharones planos</span><span class="qty">3</span></div>
+        <div class="cat-item"><span class="name">Paletas de madera</span><span class="qty">2</span></div>
+        <div class="cat-item"><span class="name">Colador grande con asa</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Colador mediano con asa</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Colador de aluminio</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Rallador</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Rejilla con huecos</span><span class="qty">1</span></div>
+      </div>
+    </details>
+
+    <details class="cat">
+      <summary>Ollas, sartenes y casseroles <span class="cat-count">8 tipos</span><span class="chev">▸</span></summary>
+      <div class="cat-items">
+        <div class="cat-item"><span class="name">Ollas grandes</span><span class="qty">2</span></div>
+        <div class="cat-item"><span class="name">Ollas de flores</span><span class="qty">2</span></div>
+        <div class="cat-item"><span class="name">Ollas para leche<span class="obs">1 grande y 1 pequeña</span></span><span class="qty">2</span></div>
+        <div class="cat-item"><span class="name">Sartén pequeño</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Sartén mediano</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Wok</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Budare</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Tortera para hacer torta<span class="obs">Color verde</span></span><span class="qty">1</span></div>
+      </div>
+    </details>
+
+    <details class="cat">
+      <summary>Vajilla, platos y tazas <span class="cat-count">9 tipos</span><span class="chev">▸</span></summary>
+      <div class="cat-items">
+        <div class="cat-item"><span class="name">Platos grandes</span><span class="qty">8</span></div>
+        <div class="cat-item"><span class="name">Platos de postre</span><span class="qty">8</span></div>
+        <div class="cat-item"><span class="name">Platos pequeños para sopa</span><span class="qty">8</span></div>
+        <div class="cat-item"><span class="name">Platicos Corelle</span><span class="qty">4</span></div>
+        <div class="cat-item"><span class="name">Platico pequeño<span class="obs">Bacterias</span></span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Tazas de café</span><span class="qty">8</span></div>
+        <div class="cat-item"><span class="name">Tazas de café pequeñas de peltre</span><span class="qty">3</span></div>
+        <div class="cat-item"><span class="name">Tazas de café de cerámica / vidrio<span class="obs">Flores</span></span><span class="qty">4</span></div>
+        <div class="cat-item"><span class="name">Bowls<span class="obs">1 marrón c/tapa, 1 rosado, 1 blanco flores</span></span><span class="qty">3</span></div>
+      </div>
+    </details>
+
+    <details class="cat">
+      <summary>Cristalería y vasos <span class="cat-count">7 tipos</span><span class="chev">▸</span></summary>
+      <div class="cat-items">
+        <div class="cat-item"><span class="name">Copas de champaña</span><span class="qty">4</span></div>
+        <div class="cat-item"><span class="name">Copas de vino blanco</span><span class="qty">6</span></div>
+        <div class="cat-item"><span class="name">Copas de vino tinto</span><span class="qty">6</span></div>
+        <div class="cat-item"><span class="name">Vasos para agua</span><span class="qty">5</span></div>
+        <div class="cat-item"><span class="name">Vasos de navidad</span><span class="qty">2</span></div>
+        <div class="cat-item"><span class="name">Vasos de vidrio altos</span><span class="qty">3</span></div>
+        <div class="cat-item"><span class="name">Vasos para niños<span class="obs">IKEA</span></span><span class="qty">6</span></div>
+      </div>
+    </details>
+
+    <details class="cat">
+      <summary>Electrodomésticos y cafetería <span class="cat-count">3 tipos</span><span class="chev">▸</span></summary>
+      <div class="cat-items">
+        <div class="cat-item"><span class="name">Licuadora</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Greca pequeña</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Greca grande</span><span class="qty">1</span></div>
+      </div>
+    </details>
+
+    <details class="cat">
+      <summary>Accesorios de mesa y servir <span class="cat-count">7 tipos</span><span class="chev">▸</span></summary>
+      <div class="cat-items">
+        <div class="cat-item"><span class="name">Individuales</span><span class="qty">4</span></div>
+        <div class="cat-item"><span class="name">Salero</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Pimentero</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Servilletero</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Posa ollas<span class="obs">1 forma vaca, 1 redondo pequeño</span></span><span class="qty">2</span></div>
+        <div class="cat-item"><span class="name">Tablas</span><span class="qty">2</span></div>
+        <div class="cat-item"><span class="name">Contenedores Tupperware<span class="obs">Tapa gris</span></span><span class="qty">2</span></div>
+      </div>
+    </details>
+
+    <details class="cat">
+      <summary>Ropa de cama y baño <span class="cat-count">3 tipos</span><span class="chev">▸</span></summary>
+      <div class="cat-items">
+        <div class="cat-item"><span class="name">Almohadas</span><span class="qty">4</span></div>
+        <div class="cat-item"><span class="name">Cubrecamas</span><span class="qty">4</span></div>
+        <div class="cat-item"><span class="name">Juegos de toallas</span><span class="qty">4</span></div>
+      </div>
+    </details>
+
+    <details class="cat">
+      <summary>Varios y hogar <span class="cat-count">3 tipos</span><span class="chev">▸</span></summary>
+      <div class="cat-items">
+        <div class="cat-item"><span class="name">Control remoto de TV</span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Control remoto de aire acondicionado<span class="obs">Samsung</span></span><span class="qty">1</span></div>
+        <div class="cat-item"><span class="name">Hamaca de colores</span><span class="qty">1</span></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="stamp">La Jaiba<br>4C</div>
+    <p>Gracias por cuidar este espacio como si fuera tuyo.</p>
+    <p>Cualquier duda, estamos a un mensaje de distancia. 🦀</p>
+  </div>
+</footer>
+
+</body>
+</html>
